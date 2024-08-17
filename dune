@@ -1,0 +1,10 @@
+(env
+ (_
+  (flags
+   (:standard
+    -w
+    -missing-record-field-pattern
+    -warn-error
+    -missing-record-field-pattern
+    -warn-error
+    -26-33-36-39-27))))

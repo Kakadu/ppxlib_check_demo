@@ -1,0 +1,7 @@
+(library
+ (inline_tests)
+ (name ppxlib_checks_demo)
+ (flags
+  (:standard -dparsetree))
+ (preprocess
+  (pps ppx_inline_test ppx_repr ppx_fresh -- -check -locations-check)))
