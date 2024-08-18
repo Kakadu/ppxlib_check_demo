@@ -1,6 +1,4 @@
 open Ppxlib
-open Ppxlib.Ast_helper
-open Stdppx
 
 let mapper =
   object (self)
@@ -12,7 +10,7 @@ let mapper =
           { e with pexp_desc = Pexp_fun (l, opt, pat, self#expression e) }
       | Pexp_constraint (ee, t) ->
           { e with pexp_desc = Pexp_constraint (self#expression ee, t) }
-      | _ -> e
+      | _ -> super#expression e
   end
 
 let () = Ppxlib.Driver.register_transformation ~impl:mapper#structure "asdfasdf"

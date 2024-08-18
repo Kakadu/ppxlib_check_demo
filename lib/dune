@@ -1,7 +1,33 @@
 (library
- (inline_tests)
- (name ppxlib_checks_demo)
+ ; (inline_tests)
+ (modules test_fresh)
+ (name test_fresh)
  (flags
   (:standard -dparsetree))
  (preprocess
-  (pps ppx_inline_test ppx_repr ppx_fresh -- -check -locations-check)))
+  (pps ppx_fresh -- -check -locations-check)))
+
+(library
+ ; (inline_tests)
+ (name test_repr)
+ (modules test_repr)
+ (flags
+  (:standard -dparsetree))
+ (preprocess
+  (pps ppx_repr -- -check -locations-check)))
+
+(library
+ (name ppx_fresh)
+ (kind ppx_rewriter)
+ (libraries ppxlib.stdppx ppxlib)
+ (modules ppx_fresh)
+ (preprocess
+  (pps ppxlib.metaquot)))
+
+(library
+ (name ppx_repr)
+ (kind ppx_rewriter)
+ (libraries ppxlib.stdppx ppxlib)
+ (modules ppx_repr)
+ (preprocess
+  (pps ppxlib.metaquot)))
