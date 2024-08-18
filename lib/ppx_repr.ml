@@ -20,7 +20,7 @@ let mapper =
             pexp_desc =
               Pexp_tuple
                 [
-                  Ast_helper.Exp.constant
+                  Ast_helper.Exp.constant ~loc:e.pexp_loc
                     (Pconst_string (text, e.pexp_loc, None));
                   e;
                 ];
