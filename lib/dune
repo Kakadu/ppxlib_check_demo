@@ -5,7 +5,7 @@
  (flags
   (:standard -dparsetree))
  (preprocess
-  (pps ppx_fresh -- -check -locations-check)))
+  (pps ppx_fresh -- -locations-check)))
 
 (library
  ; (inline_tests)
@@ -14,7 +14,7 @@
  (flags
   (:standard -dparsetree))
  (preprocess
-  (pps ppx_repr -- -check -locations-check)))
+  (pps ppx_repr -- -locations-check)))
 
 (library
  (name ppx_fresh)
@@ -31,3 +31,7 @@
  (modules ppx_repr)
  (preprocess
   (pps ppxlib.metaquot)))
+
+(cram
+ ; Only to show all the isses both on `dune b` and `dune test`
+ (deps test_fresh.a test_repr.a))
