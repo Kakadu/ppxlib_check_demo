@@ -6,8 +6,8 @@ let mapper =
 
     method! expression e =
       match e.pexp_desc with
-      | Pexp_fun (l, opt, pat, e) ->
-          { e with pexp_desc = Pexp_fun (l, opt, pat, self#expression e) }
+      | Pexp_fun (l, opt, pat, ee) ->
+          { e with pexp_desc = Pexp_fun (l, opt, pat, self#expression ee) }
       | Pexp_constraint (ee, t) ->
           { e with pexp_desc = Pexp_constraint (self#expression ee, t) }
       | _ -> super#expression e
